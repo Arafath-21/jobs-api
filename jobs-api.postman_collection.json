@@ -1,0 +1,320 @@
+{
+	"info": {
+		"_postman_id": "387df4b6-0dd7-4f83-a7d3-e0c2973509c2",
+		"name": "jobs-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32587197",
+		"_collection_link": "https://www.postman.com/spaceflight-candidate-27583072/workspace/taskmanager-api/collection/32587197-387df4b6-0dd7-4f83-a7d3-e0c2973509c2?action=share&source=collection_link&creator=32587197"
+	},
+	"item": [
+		{
+			"name": "register",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json()\r",
+							"pm.globals.set(\"accessToken\", jsonData.token);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// const jsonData = pm.response.json()\r",
+							"// pm.globals.set(\"accessToken\", jsonData.token);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"yasar\",\"email\":\"yasar@gmail.com\",\"password\":\"secret\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{jobs-api}}/auth/register",
+					"host": [
+						"{{jobs-api}}"
+					],
+					"path": [
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"yasar@gmail.com\",\"password\":\"secret\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{jobs-api}}/auth/login",
+					"host": [
+						"{{jobs-api}}"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjdjMGVmYTZkOTJlY2U3MTY2YmU4ODEiLCJuYW1lIjoiYW5uYSIsImlhdCI6MTcxOTQwNjM0MywiZXhwIjoxNzIxOTk4MzQzfQ.hPDhFv-qrRbR1_SZyOMA7i_0hnwRTli_J0NaX8-jq2M",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"company\":\"meta\",\"position\":\"front end devloper\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{jobs-api}}/job",
+					"host": [
+						"{{jobs-api}}"
+					],
+					"path": [
+						"job"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllJobs",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{jobs-api}}/job",
+					"host": [
+						"{{jobs-api}}"
+					],
+					"path": [
+						"job"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get sinlge job",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{jobs-api}}/job/:id",
+					"host": [
+						"{{jobs-api}}"
+					],
+					"path": [
+						"job",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "667c4698bc6345e8893ba6a3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "patch",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"company\":\"meta\",\"position\":\"Full stack devloper\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{jobs-api}}/job/:id",
+					"host": [
+						"{{jobs-api}}"
+					],
+					"path": [
+						"job",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "667c4698bc6345e8893ba6a3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{jobs-api}}/job/:id",
+					"host": [
+						"{{jobs-api}}"
+					],
+					"path": [
+						"job",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "667c4683bc6345e8893ba6a1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "jobs-api",
+			"value": "http://localhost:8500/api/v1"
+		}
+	]
+}
